@@ -19,9 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let startTime;
     let isComplete = false;
     let scaledPieceWidth, scaledPieceHeight;
+    let selectedImage = 'japon'; // Imagen por defecto
 
     const artData = {
-        'custom': {
+        'japon': {
             src: 'japon-antiguo-en-el-estilo-de-arte-digital.jpg',
             title: 'Japón Antiguo en Estilo de Arte Digital',
             author: 'Desconocido',
@@ -33,16 +34,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 '¿Cómo combina lo antiguo con lo moderno?'
             ],
             info: 'Esta imagen representa elementos de la cultura japonesa antigua en un estilo artístico digital.'
+        },
+        'rio': {
+            src: 'ilustracion-vibrante-de-una-comunidad-de-favela-amarilla-en-rio-de-janeiro-brasil-capturando-el-colorido.jpg',
+            title: 'Favela en Río de Janeiro',
+            author: 'Desconocido',
+            style: 'Ilustración Digital',
+            technique: 'Digital',
+            questions: [
+                '¿Qué aspectos de la cultura y arquitectura carioca observas?',
+                '¿Cómo se representa la vida comunitaria en las favelas?',
+                '¿Qué colores predominan y qué simbolizan sobre Río de Janeiro?'
+            ],
+            info: 'Esta ilustración vibrante captura la esencia de las comunidades de favelas en Río de Janeiro, Brasil. Muestra la arquitectura característica, los colores brillantes y la vida dinámica de estos barrios que son parte fundamental de la identidad cultural de la ciudad maravillosa.'
+        },
+        'choco': {
+            src: 'foto del choco quibdo.avif',
+            title: 'Quibdó, Chocó',
+            author: 'Desconocido',
+            style: 'Fotografía',
+            technique: 'Fotografía',
+            questions: [
+                '¿Qué características del paisaje chocoano puedes identificar?',
+                '¿Cómo se refleja la cultura afrocolombiana en la imagen?',
+                '¿Qué aspectos de Quibdó y el Chocó te llaman más la atención?'
+            ],
+            info: 'Esta imagen representa a Quibdó, capital del departamento del Chocó en Colombia. El Chocó es conocido por su inmensa biodiversidad, sus ríos caudalosos, su rica cultura afrocolombiana y sus tradiciones musicales únicas. Es una región que combina naturaleza exuberante con una herencia cultural profunda.'
         }
     };
 
     startBtn.addEventListener('click', startGame);
     playAgainBtn.addEventListener('click', resetGame);
 
+    // Event listeners para selección de imagen
+    const imageOptions = document.querySelectorAll('.image-option');
+    imageOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Remover selección previa
+            imageOptions.forEach(opt => opt.classList.remove('selected'));
+            // Agregar selección a la opción clickeada
+            this.classList.add('selected');
+            // Guardar la imagen seleccionada
+            selectedImage = this.dataset.image;
+        });
+    });
+
     function startGame() {
+        console.log('Iniciando juego con imagen:', selectedImage);
         gridSize = parseInt(difficultySelect.value);
-        const selectedImage = 'custom';
         imageSrc = artData[selectedImage].src;
+        console.log('Ruta de imagen:', imageSrc);
 
         startScreen.style.display = 'none';
         gameScreen.style.display = 'block';
@@ -292,7 +333,6 @@ document.addEventListener('DOMContentLoaded', function() {
         else if (elapsed < 180) rating = 'Bien';
         resultRating.textContent = `Clasificación: ${rating}`;
 
-        const selectedImage = 'custom';
         if (artData[selectedImage]) {
             const data = artData[selectedImage];
             document.getElementById('question1').textContent = data.questions[0];
