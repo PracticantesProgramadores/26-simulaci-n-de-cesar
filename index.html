@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arte en Piezas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Arte en Piezas</h1>
+        
+        <!-- Pantalla de inicio -->
+        <div id="start-screen">
+            <h2>Rompecabezas Artístico</h2>
+            <p>Desarrolla tu observación visual y aprecia el arte mientras reconstruyes la obra.</p>
+            <div class="options">
+                <label for="difficulty">Nivel de dificultad:</label>
+                <select id="difficulty">
+                    <option value="3">Fácil (3x3)</option>
+                    <option value="4">Medio (4x4)</option>
+                    <option value="5">Difícil (5x5)</option>
+                </select>
+            </div>
+            <button id="start-btn">Comenzar</button>
+        </div>
+
+        <!-- Pantalla del juego -->
+        <div id="game-screen" style="display: none;">
+            <div id="timer">Tiempo: 00:00</div>
+            <div id="puzzle-container">
+                <div id="puzzle-board"></div>
+                <div id="pieces-container"></div>
+            </div>
+        </div>
+
+        <!-- Pantalla de resultados -->
+        <div id="result-screen" style="display: none;">
+            <h2>¡Completado!</h2>
+            <div class="result-info">
+                <p id="result-time"></p>
+                <p id="result-rating"></p>
+            </div>
+            <div id="art-questions">
+                <h3>Preguntas sobre la obra:</h3>
+                <p id="question1"></p>
+                <p id="question2"></p>
+                <p id="question3"></p>
+                <p id="art-info"></p>
+            </div>
+            <button id="play-again-btn">Jugar de nuevo</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
